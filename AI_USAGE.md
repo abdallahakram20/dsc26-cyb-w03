@@ -39,3 +39,5 @@ Prevents Information Leakage, returning 403 shows that the contract is real or e
 Prevents Resource Enumeration, it stops people who might attack by checking sequential IDs like /contracts/101 so they can't figure out which contracts are valid in the system.
 
 2. Why must `verify_password` refuse a stored hash that is shorter than 32 bytes, even though the prefix matches?
+
+Prevents Truncation Bypass: Matching only a prefix allows for easy bypass of truncated or corrupt hashes with weak passwords. Maintains Cryptographic Entropy : To maintain the appropriate strength of cryptography ( $ 2^ { 256 } $ complexity ), 32 bytes ( 256 bits ) are needed. Ensures Data Integrity: If the hash is less than 32 bytes, the data is considered tampered with or malformed and should immediately fail validation.
