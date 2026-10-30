@@ -34,4 +34,8 @@ edge-case checks above before finalising:
 
 1. Why does `get_document` return 404 rather than 403 when a client asks for another client's contract?
 
+Prevents Information Leakage, returning 403 shows that the contract is real or exists. But returning 404 means it totally hides the contract from users who are not allowed to see it.
+
+Prevents Resource Enumeration, it stops people who might attack by checking sequential IDs like /contracts/101 so they can't figure out which contracts are valid in the system.
+
 2. Why must `verify_password` refuse a stored hash that is shorter than 32 bytes, even though the prefix matches?
